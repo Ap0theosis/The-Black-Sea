@@ -1,0 +1,11 @@
+# Cache da Godot e arquivos de importação automática
+.godot/
+.import/
+
+# Arquivos de exportação (caso você já tenha exportado o jogo)
+export_presets.cfg
+builds/
+
+# Arquivos específicos de editores de código (opcional)
+.mono/
+*.uid

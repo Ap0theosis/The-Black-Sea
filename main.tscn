@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://dleptsvdl0u5f"]
+
+[ext_resource type="Script" uid="uid://dxuymwv4s62mp" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://bvcx78d6t0p04" path="res://background/blue-back.png" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://cqgsyj7ya14xd" path="res://background/blue-stars.png" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dqflopox7uhp7" path="res://player.tscn" id="4_1bvp3"]
+
+[node name="Main" type="Node2D" unique_id=2103166765]
+script = ExtResource("1_0xm2m")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=660863102]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(639, 376)
+
+[node name="BlueBack" type="Sprite2D" parent="Parallax2D" unique_id=1584505455]
+modulate = Color(0.4922372, 0.49223727, 0.49223727, 1)
+position = Vector2(319.59998, 188)
+scale = Vector2(2.35, 2.35)
+texture = ExtResource("2_0xm2m")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1368063796]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(639, 376)
+
+[node name="BlueStars" type="Sprite2D" parent="Parallax2D2" unique_id=251708374]
+position = Vector2(322, 181.99998)
+scale = Vector2(2.3382351, 2.2624998)
+texture = ExtResource("3_h2yge")
+
+[node name="Player" parent="." unique_id=1877414575 instance=ExtResource("4_1bvp3")]
+position = Vector2(428, 265)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=354217828]
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=368146215]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1229242994]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=1568580059]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=523239362]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2030634216]
+layout_mode = 2
+text = "Velocidade Y : "
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=585950813]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "000"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=528676822]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2060685911]
+layout_mode = 2
+text = "Velocidade X : "
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1834770458]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "000"
+
+[connection signal="speed_changed" from="Player" to="." method="_on_player_speed_changed"]
