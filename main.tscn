@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dleptsvdl0u5f"]
 
-[ext_resource type="Script" uid="uid://dxuymwv4s62mp" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://c6e224wp121su" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bvcx78d6t0p04" path="res://background/blue-back.png" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cqgsyj7ya14xd" path="res://background/blue-stars.png" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dqflopox7uhp7" path="res://player.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dqflopox7uhp7" path="res://player/player.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D" unique_id=2103166765]
 script = ExtResource("1_0xm2m")
@@ -28,7 +28,7 @@ scale = Vector2(2.3382351, 2.2624998)
 texture = ExtResource("3_h2yge")
 
 [node name="Player" parent="." unique_id=1877414575 instance=ExtResource("4_1bvp3")]
-position = Vector2(428, 265)
+position = Vector2(452, 233)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=354217828]
 process_callback = 0
@@ -75,6 +75,21 @@ layout_mode = 2
 text = "Velocidade X : "
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1834770458]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "000"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=2011686690]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1223116943]
+layout_mode = 2
+text = "Fuel : "
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=115144852]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
