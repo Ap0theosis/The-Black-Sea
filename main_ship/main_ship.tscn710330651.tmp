@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://byanyd6wnumo5"]
+
+[ext_resource type="Script" uid="uid://bqqo42yihqlh2" path="res://main_ship/main_ship.gd" id="1_beoc0"]
+[ext_resource type="Texture2D" uid="uid://dgykyfhv1c63y" path="res://main_ship/Main Ship - Base - Full health.png" id="1_t5dke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_beoc0"]
+size = Vector2(26, 20)
+
+[node name="MainShip" type="Area2D" unique_id=1883445203]
+scale = Vector2(5, 5)
+script = ExtResource("1_beoc0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=779221820]
+rotation = 1.5707964
+texture = ExtResource("1_t5dke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=451552218]
+shape = SubResource("RectangleShape2D_beoc0")
