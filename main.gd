@@ -23,10 +23,8 @@ func _on_player_speed_changed(type : String, num : int) -> void:
 	active_label.text = str(abs(num))
 	active_label.modulate = Color.MEDIUM_PURPLE if num < 0 else Color.SKY_BLUE
 
-
 func _on_player_fuel_changed(new_fuel: int) -> void:
 	fuel_label.text = str(new_fuel)
-
 
 func _on_player_get_coin(num: int) -> void:
 	coins += num

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite := $Sprite2D as Sprite2D 
 
 signal speed_changed(type: String, num: float)
 signal fuel_changed(num: int)
@@ -13,7 +13,7 @@ var fuel = 50
 var max_speed = 250
 
 func _physics_process(delta: float) -> void:
-	var raw_velocity = Vector2(xspeed, yspeed)
+	var raw_velocity := Vector2(xspeed, yspeed)
 	
 	if raw_velocity.length() > max_speed:
 		raw_velocity = raw_velocity.limit_length(max_speed)
@@ -39,10 +39,7 @@ func _physics_process(delta: float) -> void:
 		emit_signal("speed_changed", "y", yspeed)
 		emit_signal("speed_changed", "x", xspeed)		
 	
-	
-	var mouse_pos = get_global_mouse_position()
-	$Marker2D.look_at(mouse_pos)
-	
+	$Marker2D.look_at(get_global_mouse_position())
 
 func player_boost(direction: Vector2) -> void:
 	if fuel > 0:
@@ -70,12 +67,10 @@ func player_boost(direction: Vector2) -> void:
 		if abs(yspeed + (50 * impulse_multiplier)) <= max_speed:
 			yspeed += 50 * impulse_multiplier
 			emit_signal("speed_changed", "y", yspeed)
-			
 
 func recharge_fuel() -> void:
 	fuel = 10
 	emit_signal("fuel_changed", fuel)
-
 
 func _on_hit_area_asteroid_entered(body: Node2D) -> void:
 	body.queue_free()

@@ -8,6 +8,8 @@ radius = 12.010412
 
 [node name="Asteroid1" type="CharacterBody2D" unique_id=803788886]
 scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_ncqjc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=294776748]
