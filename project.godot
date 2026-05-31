@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Space"
+config/name="The Black Sea"
 run/main_scene="uid://dleptsvdl0u5f"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://204igru1jovj"
 
 [display]
 
