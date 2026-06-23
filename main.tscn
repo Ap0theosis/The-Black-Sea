@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://dleptsvdl0u5f"]
 
-[ext_resource type="Script" uid="uid://b1mq1jpwsensf" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://bky52cvwl4r71" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bvcx78d6t0p04" path="res://background/blue-back.png" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cqgsyj7ya14xd" path="res://background/blue-stars.png" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dqflopox7uhp7" path="res://player/player.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://byanyd6wnumo5" path="res://main_ship/main_ship.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dwwvjxkvs73go" path="res://asteroids/asteroid_1.tscn" id="6_7mycd"]
+
+[sub_resource type="Curve2D" id="Curve2D_7mycd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 4664, 1456, 0, 0, 0, 0, 3408, -1464)
+}
+point_count = 2
 
 [node name="Main" type="Node2D" unique_id=2103166765]
 script = ExtResource("1_0xm2m")
@@ -28,13 +34,6 @@ repeat_size = Vector2(639, 376)
 position = Vector2(322, 181.99998)
 scale = Vector2(2.3382351, 2.2624998)
 texture = ExtResource("3_h2yge")
-
-[node name="Player" parent="." unique_id=1877414575 instance=ExtResource("4_1bvp3")]
-position = Vector2(452, 233)
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=354217828]
-process_callback = 0
-position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=368146215]
 
@@ -89,7 +88,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1223116943]
 layout_mode = 2
-text = "Fuel : "
+text = "Combustível  : "
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=115144852]
 custom_minimum_size = Vector2(200, 0)
@@ -104,7 +103,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1402901211]
 layout_mode = 2
-text = "Coins : "
+text = "Pontos : "
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=783568827]
 custom_minimum_size = Vector2(200, 0)
@@ -113,6 +112,24 @@ size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "000"
+
+[node name="Player" parent="." unique_id=1877414575 instance=ExtResource("4_1bvp3")]
+position = Vector2(452, 233)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=354217828]
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="Path2D" type="Path2D" parent="Player" unique_id=1257655990]
+curve = SubResource("Curve2D_7mycd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D" unique_id=1634718607]
+position = Vector2(4664, 1456)
+rotation = -1.9770099
+
+[node name="Timer" type="Timer" parent="Player/Path2D" unique_id=1054535798]
+wait_time = 0.5
+autostart = true
 
 [node name="MainShip" parent="." unique_id=834790391 instance=ExtResource("5_lquwl")]
 position = Vector2(563, 239)
@@ -131,6 +148,49 @@ position = Vector2(726, 121)
 [node name="Asteroid4" parent="Node2D" unique_id=1696620259 instance=ExtResource("6_7mycd")]
 position = Vector2(747, 447)
 
+[node name="Asteroid5" parent="Node2D" unique_id=1103909338 instance=ExtResource("6_7mycd")]
+position = Vector2(1109, -3)
+
+[node name="Asteroid6" parent="Node2D" unique_id=831990973 instance=ExtResource("6_7mycd")]
+position = Vector2(1130, 323)
+
+[node name="Asteroid7" parent="Node2D" unique_id=2007868883 instance=ExtResource("6_7mycd")]
+position = Vector2(1382, 192)
+
+[node name="Asteroid8" parent="Node2D" unique_id=1769336501 instance=ExtResource("6_7mycd")]
+position = Vector2(1403, 518)
+
+[node name="Asteroid9" parent="Node2D" unique_id=112803578 instance=ExtResource("6_7mycd")]
+position = Vector2(1686, -87)
+
+[node name="Asteroid10" parent="Node2D" unique_id=415643720 instance=ExtResource("6_7mycd")]
+position = Vector2(1707, 239)
+
+[node name="Asteroid11" parent="Node2D" unique_id=959119689 instance=ExtResource("6_7mycd")]
+position = Vector2(2088, 381)
+
+[node name="Asteroid12" parent="Node2D" unique_id=40114200 instance=ExtResource("6_7mycd")]
+position = Vector2(2109, 707)
+
+[node name="Asteroid13" parent="Node2D" unique_id=94231086 instance=ExtResource("6_7mycd")]
+position = Vector2(2411, 48)
+
+[node name="Asteroid14" parent="Node2D" unique_id=1011325318 instance=ExtResource("6_7mycd")]
+position = Vector2(2432, 374)
+
+[node name="Asteroid15" parent="Node2D" unique_id=241857705 instance=ExtResource("6_7mycd")]
+position = Vector2(2963, -62)
+
+[node name="Asteroid16" parent="Node2D" unique_id=1322080588 instance=ExtResource("6_7mycd")]
+position = Vector2(2984, 264)
+
+[node name="Asteroid17" parent="Node2D" unique_id=1471684557 instance=ExtResource("6_7mycd")]
+position = Vector2(3399, 233)
+
+[node name="Asteroid18" parent="Node2D" unique_id=378194292 instance=ExtResource("6_7mycd")]
+position = Vector2(3420, 559)
+
 [connection signal="fuel_changed" from="Player" to="." method="_on_player_fuel_changed"]
 [connection signal="get_coin" from="Player" to="." method="_on_player_get_coin"]
 [connection signal="speed_changed" from="Player" to="." method="_on_player_speed_changed"]
+[connection signal="timeout" from="Player/Path2D/Timer" to="." method="_on_timer_timeout"]

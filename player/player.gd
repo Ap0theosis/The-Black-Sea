@@ -21,18 +21,18 @@ func _physics_process(delta: float) -> void:
 	velocity = raw_velocity * delta * 100
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("move_left"):
 		player_boost(Vector2(-1,0))
-		sprite.frame = 3
-	if Input.is_action_just_pressed("ui_right"):
+		sprite.rotation_degrees = 90
+	if Input.is_action_just_pressed("move_right"):
 		player_boost(Vector2(1,0))
-		sprite.frame = 2
-	if Input.is_action_just_pressed("ui_up"):
+		sprite.rotation_degrees = -90
+	if Input.is_action_just_pressed("move_up"):
 		player_boost(Vector2(0,-1))
-		sprite.frame = 0
-	if Input.is_action_just_pressed("ui_down"):
+		sprite.rotation_degrees = 180
+	if Input.is_action_just_pressed("move_down"):
 		player_boost(Vector2(0,1))
-		sprite.frame = 1
+		sprite.rotation_degrees = 0
 	if Input.is_action_just_pressed("ui_accept"):
 		xspeed = 0
 		yspeed = 0

@@ -4,6 +4,7 @@ extends Node2D
 @onready var xspeed_label := $CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/RichTextLabel as RichTextLabel 
 @onready var fuel_label := $CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer3/RichTextLabel as RichTextLabel 
 @onready var coins_label := $CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer4/RichTextLabel as RichTextLabel 
+@onready var path_follow_2d: PathFollow2D = $Player/Path2D/PathFollow2D
 
 @onready var labels = {
 	"x": xspeed_label,
@@ -28,4 +29,16 @@ func _on_player_fuel_changed(new_fuel: int) -> void:
 
 func _on_player_get_coin(num: int) -> void:
 	coins += num
+	if coins >= 200:
+		get_tree().change_scene_to_file("res://win.tscn")
 	coins_label.text = str(coins)
+
+const ASTEROID = preload("res://asteroids/asteroid_1.tscn")
+
+func _on_timer_timeout() -> void:
+	var rng = randf()
+	var new_asteroid = ASTEROID.instantiate()
+	path_follow_2d.progress_ratio = rng
+	new_asteroid.global_position = path_follow_2d.global_position
+	get_tree().current_scene.add_child(new_asteroid)
+	

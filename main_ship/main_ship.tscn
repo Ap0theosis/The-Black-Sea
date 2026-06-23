@@ -1,10 +1,62 @@
 [gd_scene format=3 uid="uid://byanyd6wnumo5"]
 
-[ext_resource type="Script" uid="uid://bqqo42yihqlh2" path="res://main_ship/main_ship.gd" id="1_beoc0"]
-[ext_resource type="Texture2D" uid="uid://dgykyfhv1c63y" path="res://main_ship/Main Ship - Base - Full health.png" id="1_t5dke"]
+[ext_resource type="Script" uid="uid://c3ev6cehyd1ja" path="res://main_ship/main_ship.gd" id="1_beoc0"]
+[ext_resource type="Texture2D" uid="uid://d28xllo17x07j" path="res://player/ship.png" id="2_beoc0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvfoe"]
+atlas = ExtResource("2_beoc0")
+region = Rect2(0, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7t1w"]
+atlas = ExtResource("2_beoc0")
+region = Rect2(128, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd4j5"]
+atlas = ExtResource("2_beoc0")
+region = Rect2(256, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3v7n"]
+atlas = ExtResource("2_beoc0")
+region = Rect2(384, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnp6k"]
+atlas = ExtResource("2_beoc0")
+region = Rect2(512, 0, 128, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghksg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvfoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7t1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd4j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3v7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnp6k")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_beoc0"]
 size = Vector2(26, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_beoc0"]
+radius = 15.005333
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghksg"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfd23"]
+bg_color = Color(0.32133275, 0.023137342, 0.3215255, 1)
 
 [node name="MainShip" type="CharacterBody2D" unique_id=474943164]
 scale = Vector2(5, 5)
@@ -12,16 +64,48 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_beoc0")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=779221820]
-rotation = 1.5707964
-texture = ExtResource("1_t5dke")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1353368095]
+position = Vector2(0.20000005, 0)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_ghksg")
+autoplay = "default"
+frame_progress = 0.9980767
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=451552218]
+visible = false
 shape = SubResource("RectangleShape2D_beoc0")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1282397675]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1691841479]
 shape = SubResource("RectangleShape2D_beoc0")
 
+[node name="Hurtbox" type="Area2D" parent="." unique_id=363826659]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1272074921]
+position = Vector2(4.399998, 0)
+shape = SubResource("CircleShape2D_beoc0")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=159792458]
+custom_minimum_size = Vector2(32, 3)
+offset_left = -12.0
+offset_top = -20.800001
+offset_right = 20.0
+offset_bottom = -15.800001
+theme_override_styles/background = SubResource("StyleBoxFlat_ghksg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yfd23")
+step = 1.0
+rounded = true
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="." unique_id=1514687093]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
